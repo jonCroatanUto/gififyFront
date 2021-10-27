@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import InputText from "../InputText";
 import Categories from "../Categories";
-import { Container, Row, Col } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logOutAction } from "../../redux/userReducer/actions";
+import Button from "../Button";
 import "./style.css";
 function NavBar() {
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.userReducer);
   const [search, setSearch] = useState({
     title: "",
   });
@@ -14,25 +18,44 @@ function NavBar() {
       [e.target.name]: e.target.value,
     });
   }
+  function logout() {
+    dispatch(logOutAction());
+  }
   return (
     <div className="navBar">
-      <div className="titles">
-        <h3 className="title1">Be a part of giphfy</h3>
-        <h2 className="title2">sign UP</h2>
-      </div>
+      {data === null ? (
+        <div className="titles">
+          <h3 className="title1">Be a part of giphfy</h3>
+          <Link to="/login">
+            <h2 className="title2">sign UP</h2>
+          </Link>
+        </div>
+      ) : (
+        <div className="titles">
+          <h3 className="title1">Welcome</h3>
+
+          <h2 className="title2">{data.data.username}</h2>
+        </div>
+      )}
       <div className="search">
         <InputText
           type="text"
           id="search"
-          label="title"
+          label="Search bar is not aviable yet..."
           value={search.title}
-          placeholder="Seacrh your gif"
+          placeholder="Search bar is not aviable yet..."
           handleChange={handleChange}
         />
 
         <Categories />
       </div>
-      <img src="./serachIcon.png" alt="search icon" />
+      {data === null ? (
+        <div></div>
+      ) : (
+        <div className="logoutbuton">
+          <Button title="logOut" handleEdit={logout} type="button" />
+        </div>
+      )}
     </div>
   );
 }

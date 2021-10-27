@@ -1,0 +1,21 @@
+.loginTitle {
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #a4fcdc;
+  font-size: 120px;
+  margin: 0px;
+
+  margin-left: 5px;
+}
+.toRegisterTitle {
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #a4fcdc;
+  font-size: 100px;
+  margin: 0px;
+
+  margin-left: 40%;
+}
+
+.loginForm {
+  max-width: 50%;
+  margin-left: 25%;
+}

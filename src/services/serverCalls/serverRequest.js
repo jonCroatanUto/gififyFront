@@ -22,3 +22,25 @@ export async function uploadGif(body) {
     // },
   });
 }
+export async function register(body) {
+  //   console.log(`${process.env.REACT_APP_SERVER_URL}/gifs/`);
+  return axios({
+    method: "POST",
+    url: `${process.env.REACT_APP_SERVER_URL}/users/register`,
+    data: body,
+    // headers: {
+    //   Authorization: `Bearer ${userToken}`,
+    // },
+  });
+}
+export async function login(body) {
+  //   console.log(`${process.env.REACT_APP_SERVER_URL}/gifs/`);
+  return axios({
+    method: "POST",
+    url: `${process.env.REACT_APP_SERVER_URL}/users/login`,
+    data: body,
+    // headers: {
+    //   Authorization: `Bearer ${userToken}`,
+    // },
+  });
+}
