@@ -27,7 +27,7 @@ function NavBar() {
         <div className="titles">
           <h3 className="title1">Be a part of giphfy</h3>
           <Link to="/login">
-            <h2 className="title2">sign UP</h2>
+            <h2 className="title2">sign IN</h2>
           </Link>
         </div>
       ) : (
