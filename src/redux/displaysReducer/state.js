@@ -1,5 +1,5 @@
 const initialState = {
-  data: {},
-  loaded: false,
+  uploadModalState: false,
+  realoadHome: false,
 };
 export default initialState;

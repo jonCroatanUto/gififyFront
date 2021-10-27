@@ -1,0 +1,57 @@
+.modal-background {
+  position: absolute;
+  z-index: 10;
+  right: 0px;
+  top: 0px;
+  width: 100vh;
+  height: 100vh;
+}
+
+.track-upload {
+  background-color: rgb(53, 191, 233, 0.5);
+  padding: 2% 5% 2%;
+  position: absolute;
+  border-radius: 20px;
+  z-index: 100;
+  width: 50%;
+  /* transform: translate(-50%, -50%); */
+  border-radius: 1rem;
+  left: 25%;
+  top: 5%;
+}
+
+.cancel-button {
+  cursor: pointer;
+}
+.upload-file-input {
+  background-color: black;
+  border: #a4fcdc;
+  color: #a4fcdc;
+  font-size: 20px;
+}
+.upload-file-input:hover {
+  background-color: #a4fcdc;
+
+  color: black;
+}
+
+@media (max-width: 425px) {
+  .track-upload {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  .upload-separator > div {
+    margin-bottom: 2rem;
+  }
+}
+
+.uploaded-file {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.uploaded-file > img {
+  max-width: 5rem;
+}
