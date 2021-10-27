@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import InputText from "../InputText";
 import Select from "react-select";
 import Button from "../Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./styles.css";
 import { Container, Row, Col } from "react-bootstrap";
 import {
@@ -14,11 +14,14 @@ import { uploadGif } from "../../services/serverCalls/index";
 
 function UploadModal() {
   const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.userReducer);
   const [isCharged, setIsCharged] = useState(false);
   const [isCharging, setIsCharging] = useState(false);
 
+  const [ownerData, setOwnerData] = useState();
+
   const [fileData, setFileData] = useState({
-    owner: "6176d9b4ec8ffdf9787fb634",
+    owner: data.data._id,
     title: "",
     author: "",
     genre: "",
@@ -50,7 +53,7 @@ function UploadModal() {
 
   function handleGifUploadChange(e) {
     // e.preventDefault();
-
+    console.log(e.target.files[0]);
     const form = new FormData();
     form.append("file", e.target.files[0]);
     form.append("upload_preset", "ml_default");
