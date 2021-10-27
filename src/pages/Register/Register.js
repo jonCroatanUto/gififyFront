@@ -2,13 +2,14 @@ import React from "react";
 import InputText from "../../components/InputText";
 import Button from "../../components/Button";
 
-function Login() {
+function Register() {
   return (
     <div>
-      <h1>That's login</h1>
+      <h1>That's register</h1>
       <InputText />
       <Button />
     </div>
   );
 }
-export default Login;
+
+export default Register;

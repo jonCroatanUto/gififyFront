@@ -1,0 +1,31 @@
+.navBar {
+  display: grid;
+  grid-template-columns: 1fr 2fr 0.5fr;
+  padding: 10px;
+  border-bottom: 1px solid #31c9f7;
+  margin-bottom: 50px;
+}
+.search {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+}
+.titles {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.title1 {
+  font-family: "IBM Plex Sans Devanagari", sans-serif;
+  color: #31c9f7;
+  font-size: 40px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+.title2 {
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #a4fcdc;
+  font-size: 70px;
+  margin: 0px;
+  max-height: 30px;
+  margin-left: 5px;
+}

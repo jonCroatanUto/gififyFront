@@ -1,2 +1,2 @@
-import { getAllGifs } from "./serverRequest";
-export { getAllGifs };
+import { getAllGifs, uploadGif } from "./serverRequest";
+export { getAllGifs, uploadGif };
