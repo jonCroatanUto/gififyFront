@@ -43,7 +43,7 @@ function Home() {
       <NavBar />
       <div className="mainContainer">
         <Container>
-          <Row sm xs={3} md={6} lg={10}>
+          <Row xs={3} md={6} lg={10}>
             {gifs.map((gif, index) => {
               return <GifBox key={index} gifData={gif} />;
             })}
