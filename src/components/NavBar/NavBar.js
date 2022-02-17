@@ -26,7 +26,7 @@ function NavBar() {
       {data === null ? (
         <div className="titles">
           <h3 className="title1">Be a part of giphfy</h3>
-          <Link to="/login">
+          <Link style={{ textDecoration: "none" }} to="/login">
             <h2 className="title2">sign IN</h2>
           </Link>
         </div>

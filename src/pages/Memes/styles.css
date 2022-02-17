@@ -1,0 +1,33 @@
+.createMemeModal {
+  position: fixed;
+  width: 100%;
+  padding: 10%;
+  background-color: rgba(28, 5, 49, 0.6);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+.createTitle {
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #a4fcdc;
+  font-size: 100px;
+  margin: 0px;
+
+  margin-left: 30%;
+}
+.createForm {
+  margin: 150px 50px;
+}
+.toBackHomeTitle {
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #a4fcdc;
+  font-size: 60px;
+  margin: 0px;
+
+  margin-left: 5px;
+}
+.closeButton {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: #a4fcdc;
+  font-size: 50px;
+}

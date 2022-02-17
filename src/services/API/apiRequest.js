@@ -9,6 +9,20 @@ export async function displayMemesTemplates() {
     url: " https://api.imgflip.com/get_memes",
   });
 }
+export async function createMemes(template_id, text0, text1) {
+  //   console.log(`${process.env.REACT_APP_SERVER_URL}/gifs/`);
+  return axios({
+    method: "POST",
+    url: "https://api.imgflip.com/caption_image",
+    params: {
+      template_id: template_id,
+      username: "creoatan",
+      password: `${process.env.REACT_APP_IMGFLIP_PASS}`,
+      text0: text0,
+      text1: text1,
+    },
+  });
+}
 
 // This comented api requests givem a encrypted response, i'm not able to solve so i change and i use a imgflip api below witch have really simple usage
 // export async function generateMeme(like, dislike) {

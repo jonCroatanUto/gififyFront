@@ -52,7 +52,7 @@ function Home() {
       </div>
       {uploadModalState && <UploadModal />}
       {data === null ? (
-        <Link to="/memes">
+        <Link style={{ textDecoration: "none" }} to="/memes">
           <Button title="MAke your memes" type="button" />
         </Link>
       ) : (

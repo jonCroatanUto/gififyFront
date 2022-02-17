@@ -58,7 +58,7 @@ function Login() {
           <Button title="Login" type="submit" />
         </form>
       </div>
-      <Link to="/register">
+      <Link style={{ textDecoration: "none" }} to="/register">
         <h1 className="toRegisterTitle">Don't have any acount yet?</h1>
       </Link>
     </>

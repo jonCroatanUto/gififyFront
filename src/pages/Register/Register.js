@@ -86,7 +86,7 @@ function Register() {
           <Button title="Register" type="submit" />
         </form>
       </div>
-      <Link to="/login">
+      <Link style={{ textDecoration: "none" }} to="/login">
         <h1 className="toRegisterTitle">Back to login</h1>
       </Link>
     </>

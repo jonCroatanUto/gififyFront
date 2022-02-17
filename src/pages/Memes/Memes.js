@@ -1,18 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { displayMemesTemplates } from "../../services/API/apiRequest";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  displayMemesTemplates,
+  createMemes,
+} from "../../services/API/apiRequest";
 import { Container, Row, Col } from "react-bootstrap";
 import InputText from "../../components/InputText";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
+import "./styles.css";
 
 function Memes() {
+  const selectedTemplate = useRef();
+  const [result, setResult] = useState({
+    showResult: false,
+    urlResult: "",
+  });
+  const [showMemeCreateModal, setShowMemeCreateModal] = useState({
+    showModal: false,
+    choosenTemplate: "",
+    id: "",
+  });
   const [memesData, setMemesData] = useState([]);
+  const [words, setWords] = useState({
+    topWord: "",
+    bottomWord: "",
+  });
   useEffect(() => {
     displayMemesTemplates().then((res) => {
+      console.log(res.data.data);
       const { memes } = res.data.data;
-      // if (meme.height > meme.width) {
-      //   memesData.remove(index);
-      // }
+
       const vertical = memes.filter((meme) => {
         if (meme.height > meme.width) {
           return meme;
@@ -25,52 +42,123 @@ function Memes() {
       });
       const memesArray = horizontal.concat(vertical);
       setMemesData(memesArray);
-      // setMemesDataVertical(vertical);
-      // setMemesDataHoritzontal(horizontal);
     });
   }, []);
-  const [words, setWords] = useState({
-    dislike: "",
-    like: "",
-  });
   function send(e) {
     e.preventDefault();
-    // console.log(memesData);
-  }
-  function handleChange(e) {
-    setWords({
-      ...words,
-      [e.target.name]: e.target.value,
+    const { topWord, bottomWord } = words;
+    createMemes(e.target.id, topWord, bottomWord).then((res) => {
+      const { data } = res.data;
+      setResult({
+        showResult: true,
+        urlResult: data.url,
+      });
     });
   }
+  function handleChange({ target }) {
+    setWords({
+      ...words,
+      [target.name]: target.value,
+    });
+  }
+  function showToCreateMeme({ target }) {
+    const { src, id } = target.attributes;
+    // console.log(id.value);
+    setShowMemeCreateModal({
+      showModal: true,
+      choosenTemplate: src.nodeValue,
+      id: id.value,
+    });
+    //console.log(nodeValue);
+  }
+  function close() {
+    setShowMemeCreateModal({
+      showModal: false,
+      choosenTemplate: "",
+      id: "",
+    });
+    setResult({
+      showResult: false,
+      urlResult: "",
+    });
+  }
+  const { showModal, choosenTemplate, id } = showMemeCreateModal;
+  const { showResult, urlResult } = result;
   return (
     <>
-      <h1 className="loginTitle">Login</h1>
-      <div className="loginForm">
-        <form onSubmit={send}>
-          <InputText
-            type="text"
-            id="dislike"
-            label="dislike Word"
-            value={words.dislike}
-            placeholder="Type something you dislike"
-            handleChange={handleChange}
-          />
+      {showModal ? (
+        <div className="createMemeModal">
+          <button className="closeButton" onClick={close}>
+            X
+          </button>
+          {showResult ? (
+            <Container>
+              <Row>
+                <Col>
+                  <img src={urlResult} alt="result" />
+                </Col>
+                <Col>
+                  <InputText
+                    type="text"
+                    id="topWord"
+                    label="You can share you meme by this url"
+                    value={urlResult}
+                    placeholder="Type something you dislike"
+                    handleChange={handleChange}
+                  />
+                </Col>
+              </Row>
+            </Container>
+          ) : (
+            <Container>
+              <Row>
+                <Col xs={10} md={10} lg={10}>
+                  <h1 className="createTitle">Create Your meme</h1>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={10} md={5} lg={5}>
+                  <form id={id} className="createForm" onSubmit={send}>
+                    <InputText
+                      type="text"
+                      id="topWord"
+                      label="top word"
+                      value={words.dislike}
+                      placeholder="Type something you dislike"
+                      handleChange={handleChange}
+                    />
 
-          <InputText
-            type="text"
-            id="like"
-            label="like Word"
-            value={words.like}
-            placeholder="Type something you like"
-            handleChange={handleChange}
-          />
-          <Button title="Login" type="submit" />
-        </form>
-      </div>
-      <Link to="/">
-        <h1 className="toRegisterTitle">Back home</h1>
+                    <InputText
+                      type="text"
+                      id="bottomWord"
+                      label="bottom word"
+                      value={words.like}
+                      placeholder="Type something you like"
+                      handleChange={handleChange}
+                    />
+                    <Button title="Create meme" type="submit" />
+                  </form>
+                </Col>
+                <Col xs={10} md={5} lg={5}>
+                  <img
+                    style={{ maxWidth: "400px", margin: "100px" }}
+                    src={choosenTemplate}
+                    alt="templateImg"
+                  />
+                </Col>
+              </Row>
+            </Container>
+          )}
+        </div>
+      ) : (
+        <div></div>
+      )}
+      <Link style={{ textDecoration: "none" }} to="/">
+        <h1 className="toBackHomeTitle">Back home</h1>
       </Link>
+      <h1 style={{ marginLeft: "20%" }} className="createTitle">
+        Choose a template
+      </h1>
 
       {memesData.length !== 0 ? (
         <Container>
@@ -87,6 +175,10 @@ function Memes() {
               return (
                 <Col xs={10} md={6} lg={3}>
                   <img
+                    id={meme.id}
+                    key={meme.id}
+                    ref={selectedTemplate}
+                    onClick={showToCreateMeme}
                     src={meme.url}
                     alt={meme.name}
                     style={{
