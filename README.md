@@ -8,6 +8,7 @@ It have a env variable that point to my local server
 [http://localhost:4000](http://localhost:4000),
 
 - to make it work yo need to position you terminal inside the folder `GIFTIFY` and run the comand `npm run start`
+- It's located in the repository: [https://github.com/jonCroatanUto/giftyfy](https://github.com/jonCroatanUto/giftyfy)
 
 ## Available Scripts
 
