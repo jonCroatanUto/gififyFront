@@ -38,6 +38,7 @@ function NavBar() {
         </div>
       )}
       <div className="search">
+        <Categories />
         <InputText
           type="text"
           id="search"
@@ -46,8 +47,6 @@ function NavBar() {
           placeholder="Search bar is not aviable yet..."
           handleChange={handleChange}
         />
-
-        <Categories />
       </div>
       {data === null ? (
         <div></div>

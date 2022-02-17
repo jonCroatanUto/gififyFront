@@ -11,7 +11,7 @@ import {
   realoadHomeAction,
   unDisplayUploadAction,
 } from "../../redux/displaysReducer/action";
-import { Link } from "react-router-dom";
+
 function Home() {
   const { data } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
@@ -43,18 +43,24 @@ function Home() {
       <NavBar />
       <div className="mainContainer">
         <Container>
-          <Row xs={3} md={6} lg={10}>
+          <Row className="justify-content-center">
             {gifs.map((gif, index) => {
-              return <GifBox key={index} gifData={gif} />;
+              return (
+                <Col key={index} xs={6} md={6} lg={2}>
+                  <GifBox key={index} gifData={gif} />
+                </Col>
+              );
             })}
           </Row>
         </Container>
       </div>
       {uploadModalState && <UploadModal />}
       {data === null ? (
-        <Link style={{ textDecoration: "none" }} to="/memes">
-          <Button title="MAke your memes" type="button" />
-        </Link>
+        <Button
+          handleEdit={() => alert("singIn to upload any file")}
+          title="Upload"
+          type="button"
+        />
       ) : (
         <Button handleEdit={openUpload} title="Upload" type="button" />
       )}
