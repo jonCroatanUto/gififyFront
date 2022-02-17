@@ -32,3 +32,25 @@
 .logoutbuton {
   max-height: 10px;
 }
+@media only screen and (max-width: 900px) {
+  .search {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+  .title1 {
+    font-family: "IBM Plex Sans Devanagari", sans-serif;
+    color: #31c9f7;
+    font-size: 30px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+  }
+  .title2 {
+    font-family: "Montserrat Alternates", sans-serif;
+    color: #a4fcdc;
+    font-size: 35px;
+    margin: 0px;
+    max-height: 30px;
+    margin-left: 5px;
+  }
+}
