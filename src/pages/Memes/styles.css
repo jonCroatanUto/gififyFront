@@ -2,13 +2,12 @@
   position: fixed;
   width: 100%;
   padding: 10%;
-  background-color: rgba(28, 5, 49, 0.6);
+  background-color: var(--global-modal-color);
   backdrop-filter: blur(10px);
-  z-index: 100;
 }
 .createTitle {
-  font-family: "Montserrat Alternates", sans-serif;
-  color: #a4fcdc;
+  font-family: var(--global-font);
+  color: var(--global-color-font);
   font-size: 100px;
   margin: 0px;
 
@@ -18,8 +17,8 @@
   margin: 150px 50px;
 }
 .toBackHomeTitle {
-  font-family: "Montserrat Alternates", sans-serif;
-  color: #a4fcdc;
+  font-family: var(--global-font);
+  color: var(--global-color-font);
   font-size: 60px;
   margin: 0px;
 
@@ -28,6 +27,6 @@
 .closeButton {
   border: none;
   background-color: rgba(0, 0, 0, 0);
-  color: #a4fcdc;
+  color: var(--global-color-font);
   font-size: 50px;
 }

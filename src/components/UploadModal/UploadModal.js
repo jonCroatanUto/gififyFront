@@ -11,7 +11,8 @@ import {
   realoadHomeAction,
 } from "../../redux/displaysReducer/action";
 import { uploadGif } from "../../services/serverCalls/index";
-
+import Spinner from "../../components/Spinner";
+import FileInput from "../FileInput";
 function UploadModal() {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.userReducer);
@@ -44,15 +45,16 @@ function UploadModal() {
       [e.target.name]: e.target.value,
     });
   }
-  function handleChangeSelect(e) {
-    setFileData({
-      ...fileData,
-      genre: e.value,
-    });
-  }
+  // function handleChangeSelect(e) {
+  //   setFileData({
+  //     ...fileData,
+  //     genre: e.value,
+  //   });
+  // }
 
   function handleGifUploadChange(e) {
     // e.preventDefault();
+    setIsCharging(true);
     console.log(e.target.files[0]);
     const form = new FormData();
     form.append("file", e.target.files[0]);
@@ -68,6 +70,7 @@ function UploadModal() {
           ...fileData,
           urlGif: data.url,
         });
+        setIsCharging(false);
         setIsCharged(true);
         console.log("reponse", fileData);
       });
@@ -93,82 +96,82 @@ function UploadModal() {
         onClick={() => dispatch(unDisplayUploadAction())}
         className="modal-background"
       ></div>
+
       <div className="track-upload">
-        <button onClick={() => console.log(fileData)}></button>
         <form onSubmit={send}>
-          <Row>
-            <Col xs={12} md={6} className="track-update">
-              <h2 className="titleUpdate">Upload track</h2>
-              <InputText
-                type="text"
-                id="title"
-                label="Title *"
-                value={fileData.title}
-                placeholder="Type title"
-                handleChange={handleChange}
-              />
-              <InputText
-                type="text"
-                id="author"
-                label="Author *"
-                value={fileData.author}
-                placeholder="Type author"
-                handleChange={handleChange}
-              />
+          <Container>
+            <Row className="justify-content-center">
+              <Col className="text-center">
+                <h2 className="titleUpdate">Upload track</h2>
+                <InputText
+                  type="text"
+                  id="title"
+                  label="Title "
+                  value={fileData.title}
+                  placeholder="Type title"
+                  handleChange={handleChange}
+                />
+                <InputText
+                  type="text"
+                  id="author"
+                  label="Author "
+                  value={fileData.author}
+                  placeholder="Type author"
+                  handleChange={handleChange}
+                />
+              </Col>
+            </Row>
 
-              <Select
-                width="500px"
-                menuColor="red"
-                styles={customStyles}
-                onChange={handleChangeSelect}
-                options={options}
-                value={{ label: fileData.genre, value: fileData.genre }}
-              />
-
-              <div className="xl-separator" />
-
-              <Col
-                xs={12}
-                md={6}
-                lg={6}
-                className="position-relative flex-column d-flex justify-content-center"
-              >
-                {isCharged ? (
+            <Row className="justify-content-center">
+              <Col className="text-center">
+                {isCharging ? (
+                  <div className="spinnerWrapper">
+                    <Spinner />
+                  </div>
+                ) : isCharged ? (
                   <>
-                    <Col className="uploaded-file">
-                      <h3>Gif changed</h3>
-                      {/* <img
-                      src={trackData.urlCover}
+                    <h3 className="titleUpdateShort">
+                      File ready click SEND to confirm
+                    </h3>
+                    <img
+                      src={fileData.urlGif}
                       alt="uploaded"
                       className="existing-image"
-                    /> */}
-                    </Col>
+                    />
                   </>
                 ) : (
                   <>
-                    <h5>Upload Gif:</h5>
-                    <input
+                    <h5 className="titleUpdate">Upload Gif:</h5>
+                    <FileInput
                       type="file"
                       name="file"
-                      onChange={handleGifUploadChange}
-                      className="upload-file-input"
+                      handleChange={handleGifUploadChange}
                     />
-                    <div className="upload-file-container">
-                      <h1>+</h1>
-                    </div>
-                    {/* <div className="upload-file-container">
-                    <img
-                      src={trackData.urlCover}
-                      alt="uploaded"
-                      className="existing-image"
-                    />
-                  </div> */}
                   </>
                 )}
               </Col>
-            </Col>
-          </Row>
-          <Button title="send" type="submit" />
+            </Row>
+            <Row className="justify-content-center">
+              {isCharged ? (
+                <>
+                  <Col className="text-center">
+                    <Button title="SEND" type="submit" />
+                  </Col>
+                  <Col className="text-center">
+                    <Button
+                      handleEdit={() => dispatch(unDisplayUploadAction())}
+                      title="CANCEL"
+                      type="button"
+                    />
+                  </Col>
+                </>
+              ) : (
+                <Col className="text-center">
+                  <Button title="SEND" type="submit" />
+                </Col>
+              )}
+            </Row>
+          </Container>
         </form>
       </div>
     </>

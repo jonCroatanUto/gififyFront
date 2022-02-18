@@ -1,14 +1,15 @@
 .modal-background {
-  position: absolute;
+  position: fixed;
   z-index: 10;
-  right: 0px;
+  left: 0px;
   top: 0px;
-  width: 100vh;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
 .track-upload {
-  background-color: rgb(53, 191, 233, 0.5);
+  background-color: var(--global-modal-color);
+  backdrop-filter: blur(10px);
   padding: 2% 5% 2%;
   position: absolute;
   border-radius: 20px;
@@ -19,22 +20,26 @@
   left: 25%;
   top: 5%;
 }
-
+.spinnerWrapper {
+  margin: 10px 40%;
+}
 .cancel-button {
   cursor: pointer;
 }
-.upload-file-input {
-  background-color: black;
-  border: #a4fcdc;
-  color: #a4fcdc;
-  font-size: 20px;
-}
-.upload-file-input:hover {
-  background-color: #a4fcdc;
 
-  color: black;
+.existing-image {
+  max-width: 200px;
 }
-
+.titleUpdate {
+  font-family: var(--global-font);
+  color: var(--global-color-font);
+  font-size: 80px;
+}
+.titleUpdateShort {
+  font-family: var(--global-font);
+  color: var(--global-color-font);
+  font-size: 40px;
+}
 @media (max-width: 425px) {
   .track-upload {
     padding-top: 5rem;
@@ -44,14 +49,4 @@
   .upload-separator > div {
     margin-bottom: 2rem;
   }
-}
-
-.uploaded-file {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.uploaded-file > img {
-  max-width: 5rem;
 }

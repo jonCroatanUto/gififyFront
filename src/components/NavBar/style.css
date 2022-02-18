@@ -22,8 +22,8 @@
   margin-bottom: 10px;
 }
 .title2 {
-  font-family: "Montserrat Alternates", sans-serif;
-  color: #a4fcdc;
+  font-family: var(--global-font);
+  color: var(--global-color-font);
   font-size: 70px;
   margin: 0px;
   max-height: 30px;
@@ -46,8 +46,8 @@
     margin-bottom: 10px;
   }
   .title2 {
-    font-family: "Montserrat Alternates", sans-serif;
-    color: #a4fcdc;
+    font-family: var(--global-font);
+    color: var(--global-color-font);
     font-size: 35px;
     margin: 0px;
     max-height: 30px;

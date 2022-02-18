@@ -1,14 +1,14 @@
 .loginTitle {
-  font-family: "Montserrat Alternates", sans-serif;
-  color: #a4fcdc;
+  font-family: var(--global-font);
+  color: var(--global-color-font);
   font-size: 120px;
   margin: 0px;
 
   margin-left: 5px;
 }
 .toRegisterTitle {
-  font-family: "Montserrat Alternates", sans-serif;
-  color: #a4fcdc;
+  font-family: var(--global-font);
+  color: var(--global-color-font);
   font-size: 100px;
   margin: 0px;
 
