@@ -10,7 +10,6 @@ import {
 } from "../../redux/displaysReducer/action";
 
 function GifBox({ gifData }) {
-  console.log(gifData);
   const { _id, urlGif, title } = gifData;
   const dispatch = useDispatch();
   function displayConfirmDelete() {

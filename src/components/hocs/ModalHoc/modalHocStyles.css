@@ -10,7 +10,7 @@
   background-color: var(--global-modal-color);
   backdrop-filter: blur(10px);
   padding: 2% 5% 2%;
-  position: absolute;
+  position: fixed;
   border-radius: 20px;
   z-index: 100;
   width: 50%;

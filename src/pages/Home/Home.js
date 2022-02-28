@@ -14,7 +14,7 @@ import {
 import "./home.css";
 import { BsFillCloudUploadFill } from "react-icons/bs";
 import UpdateModal from "../../components/UpdateModal/UpdateModal";
-
+import DeleteModal from "../../components/DeleteModal/DeleteModal";
 function Home() {
   const { data } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
@@ -91,7 +91,7 @@ function Home() {
         </Container>
       </div>
       {uploadModalState ? <UploadModal /> : <div></div>}
-      {isDispalyDelete ? <UploadModal /> : <div></div>}
+      {isDispalyDelete ? <DeleteModal /> : <div></div>}
       {isDispalyUpdate ? <UpdateModal /> : <div></div>}
     </>
   );
