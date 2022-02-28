@@ -2,14 +2,10 @@
   display: grid;
   grid-template-columns: 1fr 2fr 0.5fr;
   padding: 10px;
-  border-bottom: 1px solid #31c9f7;
+  border-bottom: 1px solid var(--global-color-font);
   margin-bottom: 50px;
 }
-.search {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-}
+
 .titles {
   display: grid;
   grid-template-rows: 1fr 1fr;

@@ -27,6 +27,7 @@ function Register() {
     e.preventDefault();
     register(userData).then((res) => {
       dispatch(fetchUserData(res.data));
+      localStorage.setItem("userLoged", JSON.stringify(res.data));
     });
   }
 

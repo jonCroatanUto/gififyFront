@@ -7,7 +7,7 @@
 
   border: 1px solid var(--global-color-font);
   border-radius: 20%;
-  padding: 20%;
+  padding: 10%;
   outline: none;
   white-space: nowrap;
   -webkit-user-select: none;
@@ -28,4 +28,8 @@
 }
 .custom-file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+.inputWrepper {
+  max-width: 150px;
+  overflow: hidden;
 }

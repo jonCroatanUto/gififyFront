@@ -59,7 +59,7 @@ function UploadModal() {
     const form = new FormData();
     form.append("file", e.target.files[0]);
     form.append("upload_preset", "ml_default");
-    form.append("cloud_name", "daiejrif5");
+    form.append("folder", "memesAndGifs");
 
     axios
       .post(`https://api.cloudinary.com/v1_1/daiejrif5/image/upload/`, form)
@@ -123,33 +123,44 @@ function UploadModal() {
             </Row>
 
             <Row className="justify-content-center">
-              <Col className="text-center">
-                {isCharging ? (
-                  <div className="spinnerWrapper">
+              {isCharging ? (
+                <>
+                  <Col xs={4} md={4} lg={4}></Col>
+                  <Col xs={4} md={4} lg={4}>
                     <Spinner />
-                  </div>
-                ) : isCharged ? (
-                  <>
-                    <h3 className="titleUpdateShort">
-                      File ready click SEND to confirm
-                    </h3>
+                  </Col>
+                  <Col xs={4} md={4} lg={4}></Col>
+                </>
+              ) : isCharged ? (
+                <>
+                  <h3 className="titleUpdateShort">
+                    File ready click SEND to confirm
+                  </h3>
+                  <Col xs={4} md={4} lg={4}></Col>
+                  <Col xs={4} md={4} lg={4}>
                     <img
                       src={fileData.urlGif}
                       alt="uploaded"
                       className="existing-image"
                     />
-                  </>
-                ) : (
-                  <>
-                    <h5 className="titleUpdate">Upload Gif:</h5>
+                  </Col>
+                  <Col xs={4} md={4} lg={4}></Col>
+                </>
+              ) : (
+                <>
+                  <h5 className="titleUpdate">Upload Gif:</h5>
+
+                  <Col xs={4} md={4} lg={4}></Col>
+                  <Col xs={4} md={4} lg={4}>
                     <FileInput
                       type="file"
                       name="file"
                       handleChange={handleGifUploadChange}
                     />
-                  </>
-                )}
-              </Col>
+                  </Col>
+                  <Col xs={4} md={4} lg={4}></Col>
+                </>
+              )}
             </Row>
             <Row className="justify-content-center">
               {isCharged ? (
@@ -166,9 +177,13 @@ function UploadModal() {
                   </Col>
                 </>
               ) : (
-                <Col className="text-center">
-                  <Button title="SEND" type="submit" />
-                </Col>
+                <>
+                  <Col xs={4} md={4} lg={4}></Col>
+                  <Col xs={4} md={4} lg={4}>
+                    <Button title="SEND" type="submit" />
+                  </Col>
+                  <Col xs={4} md={4} lg={4}></Col>
+                </>
               )}
             </Row>
           </Container>

@@ -11,6 +11,8 @@ import {
   realoadHomeAction,
   unDisplayUploadAction,
 } from "../../redux/displaysReducer/action";
+import "./home.css";
+import { BsFillCloudUploadFill } from "react-icons/bs";
 
 function Home() {
   const { data } = useSelector((state) => state.userReducer);
@@ -44,26 +46,46 @@ function Home() {
       <div className="mainContainer">
         <Container>
           <Row className="justify-content-center">
-            {gifs.map((gif, index) => {
-              return (
-                <Col key={index} xs={6} md={6} lg={2}>
-                  <GifBox key={index} gifData={gif} />
+            {data === null ? (
+              <Col>
+                <button
+                  onClick={() => alert("singIn to upload any file")}
+                  type="button"
+                  className="buttonContainer"
+                >
+                  <div className="iconWrpper">
+                    <BsFillCloudUploadFill size={50} />
+                  </div>
+                </button>
+              </Col>
+            ) : (
+              <>
+                <Col xs={12} md={6} lg={4}>
+                  <button
+                    className="buttonContainer"
+                    onClick={openUpload}
+                    title="Upload"
+                    type="button"
+                  >
+                    <div className="iconWrpper">
+                      <BsFillCloudUploadFill size={50} />
+                    </div>
+                  </button>
                 </Col>
-              );
-            })}
+
+                {gifs.map((gif, index) => {
+                  return (
+                    <Col key={index} xs={12} md={6} lg={4}>
+                      <GifBox key={index} gifData={gif} />
+                    </Col>
+                  );
+                })}
+              </>
+            )}
           </Row>
         </Container>
       </div>
       {uploadModalState && <UploadModal />}
-      {data === null ? (
-        <Button
-          handleEdit={() => alert("singIn to upload any file")}
-          title="Upload"
-          type="button"
-        />
-      ) : (
-        <Button handleEdit={openUpload} title="Upload" type="button" />
-      )}
     </>
   );
 }

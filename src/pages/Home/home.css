@@ -1,0 +1,16 @@
+.buttonContainer {
+  min-width: 200px;
+  min-height: 200px;
+  color: var(--global-color-font);
+  margin-left: 5px;
+  border: 1px solid #31c9f7;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 50px;
+}
+.iconWrpper {
+  transition: 0.3s ease-out;
+}
+.iconWrpper:hover {
+  transform: translateY(-10px);
+}

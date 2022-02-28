@@ -8,10 +8,8 @@
 .createTitle {
   font-family: var(--global-font);
   color: var(--global-color-font);
-  font-size: 100px;
+  font-size: 50px;
   margin: 0px;
-
-  margin-left: 30%;
 }
 .createForm {
   margin: 150px 50px;
@@ -28,5 +26,6 @@
   border: none;
   background-color: rgba(0, 0, 0, 0);
   color: var(--global-color-font);
-  font-size: 50px;
+  font-size: 20px;
+  cursor: pointer;
 }

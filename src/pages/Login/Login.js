@@ -23,8 +23,9 @@ function Login() {
   function send(e) {
     e.preventDefault();
     login(logData).then((res) => {
-      console.log(res);
+      console.log(res.data.message);
       dispatch(fetchUserData(res.data));
+      localStorage.setItem("userLoged", JSON.stringify(res.data));
     });
   }
   function handleChange(e) {

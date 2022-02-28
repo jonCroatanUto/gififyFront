@@ -33,12 +33,12 @@
 .titleUpdate {
   font-family: var(--global-font);
   color: var(--global-color-font);
-  font-size: 80px;
+  font-size: 40px;
 }
 .titleUpdateShort {
   font-family: var(--global-font);
   color: var(--global-color-font);
-  font-size: 40px;
+  font-size: 20px;
 }
 @media (max-width: 425px) {
   .track-upload {

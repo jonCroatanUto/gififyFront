@@ -182,8 +182,9 @@ function Memes() {
                     src={meme.url}
                     alt={meme.name}
                     style={{
+                      cursor: "pointer",
                       width: `${width}px`,
-                      maxWidth: "300px",
+                      maxWidth: "200px",
 
                       margin: "10px",
                     }}

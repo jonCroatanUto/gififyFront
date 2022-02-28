@@ -3,7 +3,7 @@ import InputText from "../InputText";
 import Categories from "../Categories";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logOutAction } from "../../redux/userReducer/actions";
+
 import Button from "../Button";
 import "./style.css";
 function NavBar() {
@@ -18,9 +18,7 @@ function NavBar() {
       [e.target.name]: e.target.value,
     });
   }
-  function logout() {
-    dispatch(logOutAction());
-  }
+
   return (
     <div className="navBar">
       {data === null ? (
@@ -39,22 +37,7 @@ function NavBar() {
       )}
       <div className="search">
         <Categories />
-        <InputText
-          type="text"
-          id="search"
-          label="Search bar is not aviable yet..."
-          value={search.title}
-          placeholder="Search bar is not aviable yet..."
-          handleChange={handleChange}
-        />
       </div>
-      {data === null ? (
-        <div></div>
-      ) : (
-        <div className="logoutbuton">
-          <Button title="logOut" handleEdit={logout} type="button" />
-        </div>
-      )}
     </div>
   );
 }
