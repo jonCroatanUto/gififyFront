@@ -13,6 +13,8 @@ import {
 import { uploadGif } from "../../services/serverCalls/index";
 import Spinner from "../../components/Spinner";
 import FileInput from "../FileInput";
+import ModalHoc from "../hocs/ModalHoc/ModalHoc";
+
 function UploadModal() {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.userReducer);
@@ -91,106 +93,97 @@ function UploadModal() {
   };
 
   return (
-    <>
-      <div
-        onClick={() => dispatch(unDisplayUploadAction())}
-        className="modal-background"
-      ></div>
+    <form onSubmit={send}>
+      <Container>
+        <Row className="justify-content-center">
+          <Col className="text-center">
+            <h2 className="titleUpdate">Upload track</h2>
+            <InputText
+              type="text"
+              id="title"
+              label="Title "
+              value={fileData.title}
+              placeholder="Type title"
+              handleChange={handleChange}
+            />
+            <InputText
+              type="text"
+              id="author"
+              label="Author "
+              value={fileData.author}
+              placeholder="Type author"
+              handleChange={handleChange}
+            />
+          </Col>
+        </Row>
 
-      <div className="track-upload">
-        <form onSubmit={send}>
-          <Container>
-            <Row className="justify-content-center">
-              <Col className="text-center">
-                <h2 className="titleUpdate">Upload track</h2>
-                <InputText
-                  type="text"
-                  id="title"
-                  label="Title "
-                  value={fileData.title}
-                  placeholder="Type title"
-                  handleChange={handleChange}
-                />
-                <InputText
-                  type="text"
-                  id="author"
-                  label="Author "
-                  value={fileData.author}
-                  placeholder="Type author"
-                  handleChange={handleChange}
+        <Row className="justify-content-center">
+          {isCharging ? (
+            <>
+              <Col xs={4} md={4} lg={4}></Col>
+              <Col xs={4} md={4} lg={4}>
+                <Spinner />
+              </Col>
+              <Col xs={4} md={4} lg={4}></Col>
+            </>
+          ) : isCharged ? (
+            <>
+              <h3 className="titleUpdateShort">
+                File ready click SEND to confirm
+              </h3>
+              <Col xs={4} md={4} lg={4}></Col>
+              <Col xs={4} md={4} lg={4}>
+                <img
+                  src={fileData.urlGif}
+                  alt="uploaded"
+                  className="existing-image"
                 />
               </Col>
-            </Row>
+              <Col xs={4} md={4} lg={4}></Col>
+            </>
+          ) : (
+            <>
+              <h5 className="titleUpdate">Upload Gif:</h5>
 
-            <Row className="justify-content-center">
-              {isCharging ? (
-                <>
-                  <Col xs={4} md={4} lg={4}></Col>
-                  <Col xs={4} md={4} lg={4}>
-                    <Spinner />
-                  </Col>
-                  <Col xs={4} md={4} lg={4}></Col>
-                </>
-              ) : isCharged ? (
-                <>
-                  <h3 className="titleUpdateShort">
-                    File ready click SEND to confirm
-                  </h3>
-                  <Col xs={4} md={4} lg={4}></Col>
-                  <Col xs={4} md={4} lg={4}>
-                    <img
-                      src={fileData.urlGif}
-                      alt="uploaded"
-                      className="existing-image"
-                    />
-                  </Col>
-                  <Col xs={4} md={4} lg={4}></Col>
-                </>
-              ) : (
-                <>
-                  <h5 className="titleUpdate">Upload Gif:</h5>
-
-                  <Col xs={4} md={4} lg={4}></Col>
-                  <Col xs={4} md={4} lg={4}>
-                    <FileInput
-                      type="file"
-                      name="file"
-                      handleChange={handleGifUploadChange}
-                    />
-                  </Col>
-                  <Col xs={4} md={4} lg={4}></Col>
-                </>
-              )}
-            </Row>
-            <Row className="justify-content-center">
-              {isCharged ? (
-                <>
-                  <Col className="text-center">
-                    <Button title="SEND" type="submit" />
-                  </Col>
-                  <Col className="text-center">
-                    <Button
-                      handleEdit={() => dispatch(unDisplayUploadAction())}
-                      title="CANCEL"
-                      type="button"
-                    />
-                  </Col>
-                </>
-              ) : (
-                <>
-                  <Col xs={4} md={4} lg={4}></Col>
-                  <Col xs={4} md={4} lg={4}>
-                    <Button title="SEND" type="submit" />
-                  </Col>
-                  <Col xs={4} md={4} lg={4}></Col>
-                </>
-              )}
-            </Row>
-          </Container>
-        </form>
-      </div>
-    </>
+              <Col xs={4} md={4} lg={4}></Col>
+              <Col xs={4} md={4} lg={4}>
+                <FileInput
+                  type="file"
+                  name="file"
+                  handleChange={handleGifUploadChange}
+                />
+              </Col>
+              <Col xs={4} md={4} lg={4}></Col>
+            </>
+          )}
+        </Row>
+        <Row className="justify-content-center">
+          {isCharged ? (
+            <>
+              <Col className="text-center">
+                <Button title="SEND" type="submit" />
+              </Col>
+              <Col className="text-center">
+                <Button
+                  handleEdit={() => dispatch(unDisplayUploadAction())}
+                  title="CANCEL"
+                  type="button"
+                />
+              </Col>
+            </>
+          ) : (
+            <>
+              <Col xs={4} md={4} lg={4}></Col>
+              <Col xs={4} md={4} lg={4}>
+                <Button title="SEND" type="submit" />
+              </Col>
+              <Col xs={4} md={4} lg={4}></Col>
+            </>
+          )}
+        </Row>
+      </Container>
+    </form>
   );
 }
 
-export default UploadModal;
+export default ModalHoc(UploadModal);

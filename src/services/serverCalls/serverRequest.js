@@ -22,6 +22,30 @@ export async function uploadGif(body) {
     // },
   });
 }
+
+export async function deleteGif({
+  //owner,
+  id,
+}) {
+  return axios({
+    method: "DELETE",
+    url: `${process.env.REACT_APP_SERVER_URL}/gifs/deleteGif/${id}`,
+  });
+}
+export async function updateGif({
+  //owner,
+  id,
+
+  title,
+}) {
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_SERVER_URL}/gifs/updateGif/${id}`,
+    data: {
+      title: title,
+    },
+  });
+}
 export async function register(body) {
   //   console.log(`${process.env.REACT_APP_SERVER_URL}/gifs/`);
   return axios({
