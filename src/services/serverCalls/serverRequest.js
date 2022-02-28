@@ -23,16 +23,16 @@ export async function uploadGif(body) {
   });
 }
 
-export async function deleteImage({
+export async function deleteGif({
   //owner,
   id,
 }) {
   return axios({
     method: "DELETE",
-    url: `${process.env.REACT_APP_SERVER_URL}gifs/deleteGif/${id}`,
+    url: `${process.env.REACT_APP_SERVER_URL}/gifs/deleteGif/${id}`,
   });
 }
-export async function updateImage({
+export async function updateGif({
   //owner,
   id,
 
@@ -40,7 +40,7 @@ export async function updateImage({
 }) {
   return axios({
     method: "PATCH",
-    url: `${process.env.REACT_APP_SERVER_URL}}gifs/updateGif/${id}`,
+    url: `${process.env.REACT_APP_SERVER_URL}/gifs/updateGif/${id}`,
     data: {
       title: title,
     },

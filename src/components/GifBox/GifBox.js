@@ -3,8 +3,26 @@ import "./style.css";
 import { Container, Row, Col } from "react-bootstrap";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import { useDispatch } from "react-redux";
+import {
+  displayUpdateAction,
+  displayDeleteAction,
+} from "../../redux/displaysReducer/action";
+
 function GifBox({ gifData }) {
+  console.log(gifData);
   const { _id, urlGif, title } = gifData;
+  const dispatch = useDispatch();
+  function displayConfirmDelete() {
+    console.log("delete");
+    // deleteImage({ id: id }).then((res) => console.log(res));
+    dispatch(displayDeleteAction({ isDispalyDelete: true, id: _id }));
+  }
+  function displayUpdate() {
+    dispatch(
+      displayUpdateAction({ isDispalyUpdate: true, id: _id, title: title })
+    );
+  }
 
   return (
     <>
@@ -23,8 +41,11 @@ function GifBox({ gifData }) {
         </Row>
         <Row>
           <Col>
-            <EditIcon style={{ color: "green" }} />
-            <DeleteIcon style={{ color: "red" }} />
+            <EditIcon onClick={displayUpdate} style={{ color: "green" }} />
+            <DeleteIcon
+              onClick={displayConfirmDelete}
+              style={{ color: "red" }}
+            />
           </Col>
         </Row>
       </div>

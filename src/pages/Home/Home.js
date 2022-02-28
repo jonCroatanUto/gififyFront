@@ -13,13 +13,17 @@ import {
 } from "../../redux/displaysReducer/action";
 import "./home.css";
 import { BsFillCloudUploadFill } from "react-icons/bs";
+import UpdateModal from "../../components/UpdateModal/UpdateModal";
 
 function Home() {
   const { data } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
-  const { uploadModalState, realoadHome } = useSelector(
-    (state) => state.displaysReducer
-  );
+  const {
+    uploadModalState,
+    realoadHome,
+    isDeleteConfirmModalDisplayed,
+    isUpdateModalDisplayed,
+  } = useSelector((state) => state.displaysReducer);
   const [gifs, setGifs] = useState([]);
   // const [diplayUpload, setDisplayUpload] = useState(false);
   useEffect(() => {
@@ -39,7 +43,8 @@ function Home() {
   function openUpload() {
     dispatch(displayUploadAction());
   }
-
+  const { isDispalyDelete } = isDeleteConfirmModalDisplayed;
+  const { isDispalyUpdate } = isUpdateModalDisplayed;
   return (
     <>
       <NavBar />
@@ -85,7 +90,9 @@ function Home() {
           </Row>
         </Container>
       </div>
-      {uploadModalState && <UploadModal />}
+      {uploadModalState ? <UploadModal /> : <div></div>}
+      {isDispalyDelete ? <UploadModal /> : <div></div>}
+      {isDispalyUpdate ? <UpdateModal /> : <div></div>}
     </>
   );
 }
